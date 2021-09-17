@@ -9,4 +9,4 @@ mongoose.connect(
         useFindAndModify: false
     }
 ).then(() => {console.log("database connected")})
-  .catch((err) => console.log("database connection failed: " + err))
+  .catch((err) => console.log("database connection failed: " + err));

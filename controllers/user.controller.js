@@ -11,7 +11,7 @@ module.exports.userInfo = (req, res) => {
         return res.status(404).send('id not found: ' + req.params.id);
 
     UserModel.findById(req.params.id, (err, data) => {
-        if (!err) res.send(data)
+        if (!err) res.send(data) 
         else console.log('id not found: ' + err);
     }).select('-password');
 }

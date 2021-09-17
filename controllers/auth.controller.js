@@ -1,5 +1,6 @@
 const userModel = require('../models/user.model');
 const jsonwebtoken = require('jsonwebtoken');
+const { registerError, loginError } = require('../errors/error');
 
 module.exports.signUp = async(req, res) => {
     const {pseudo, email, password} = req.body;
@@ -9,7 +10,9 @@ module.exports.signUp = async(req, res) => {
         res.status(201).json({user: user._id});
 
     }catch(e) {
-        res.status(500).send({error: e});
+        const errors = registerError(e)
+        console.log({e})
+        res.status(500).send({ errors });
     }
 }
 
@@ -30,10 +33,13 @@ module.exports.signIn = async (req, res) => {
         res.cookie('jwt', token, {httpOnly: true, maxAge:expiration});
         res.status(200).json({user: user._id});
     }catch(err) {
-        res.status(500).json({error: err});
+        console.log(err)
+        const errors = loginError(err)
+        res.status(500).send({errors});
     }
 }
 
 module.exports.logout = async (req, res) => {
-
+    res.cookies('jwt', '', {maxAge: 1})
+    res.redirect('/')
 }

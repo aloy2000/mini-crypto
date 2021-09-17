@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PostSchema =  new mongoose.Schema(
+const PostSchema = new mongoose.Schema(
     {
         posterId: {
             type: String,
@@ -9,7 +9,7 @@ const PostSchema =  new mongoose.Schema(
         message: {
             type: String,
             trim: true,
-            maxlength: 600 
+            maxlength: 600
         },
         picture: {
             type: String,
@@ -21,6 +21,17 @@ const PostSchema =  new mongoose.Schema(
         likers: {
             type: String,
         },
+        comments: {
+            type: [
+                {
+                    idCommenter: String,
+                    pseudoComment: String,
+                    content: String,
+                    timestamp: Number
+                }
+
+            ]
+        }
     }
 )
 

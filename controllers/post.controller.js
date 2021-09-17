@@ -12,11 +12,14 @@ module.exports.getAllPosts = async (req, res) => {
 module.exports.createPost = async (req, res) => {
 
     try {
-        const {posterId, message,likers} = req.body;
+        const {posterId, message,likers,video, comments} = req.body;
         const newPost =  await  postModel.create({
             posterId: posterId,
             message: message,
-            likers: likers
+            likers: likers,
+            video: video,
+            comments: comments
+
         });
         res.status(201).send({post: newPost._id});
 
