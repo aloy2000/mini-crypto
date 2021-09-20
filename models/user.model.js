@@ -41,7 +41,7 @@ const UserSchema = new mongoose.Schema(
             type: [String]
         },
         likes: {
-            types: [String],
+            type: [String],
         }
     },
     {

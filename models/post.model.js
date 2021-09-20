@@ -19,7 +19,7 @@ const PostSchema = new mongoose.Schema(
         },
 
         likers: {
-            type: String,
+            type: [String],
         },
         comments: {
             type: [
@@ -32,6 +32,9 @@ const PostSchema = new mongoose.Schema(
 
             ]
         }
+    },
+    {
+        timestamps: true,
     }
 )
 
