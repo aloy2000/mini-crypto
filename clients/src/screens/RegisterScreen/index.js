@@ -53,7 +53,7 @@ const RegisterScreen = ({ navigation }) => {
             )
         })
             .then(data => {
-                if (data.ok) {
+                if (!data.ok) {
                     throw Error(data.status)
                 }
                 return data.json()

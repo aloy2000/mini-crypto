@@ -53,7 +53,7 @@ const HomeScreen = () => {
             <Stories />
             {
                 allPost.map(function(post) {
-                   return <Post post={post} />
+                   return <Post post={post} key={post._id} />
                 })
             }
             <Post post={post[1]} />

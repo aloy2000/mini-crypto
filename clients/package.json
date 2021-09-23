@@ -16,6 +16,7 @@
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
+    "dotenv": "^10.0.0",
     "email-validator": "^2.0.4",
     "lottie-ios": "3.2.3",
     "lottie-react-native": "^4.0.3",
@@ -26,7 +27,11 @@
     "react-native-safe-area-context": "^3.3.0",
     "react-native-screens": "^3.6.0",
     "react-native-vector-icons": "^8.1.0",
-    "react-navigation": "^4.4.4"
+    "react-navigation": "^4.4.4",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
