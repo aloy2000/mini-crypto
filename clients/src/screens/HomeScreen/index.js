@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { ScrollView, RefreshControl } from 'react-native';
 import Post from '../../components/Post';
 import Stories from '../../components/Stories';
+import { useSelector, useDispatch } from 'react-redux'
 
 const post = [
     {
@@ -28,10 +29,19 @@ const post = [
     }
 ]
 
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 const HomeScreen = () => {
     const [allPost, setAllPost] = useState([]);
+    const [refresh, setRefresh] = useState(false)
+    const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
 
-
+    const onrefresh = useCallback(() => {
+        setRefresh(true)
+        wait(2000).then(() => setRefresh(false))
+    }, [])
 
     useEffect(() => {
         fetch('http://192.168.43.15:7000/api/post/getAllPosts')
@@ -44,22 +54,31 @@ const HomeScreen = () => {
             )
             .catch((err) => console.log("error occuring: " + err))
     }, []);
-    
+
+    console.warn("state global a: ", currentUser)
+
     return (
 
         <ScrollView
             showsVerticalScrollIndicator={false}
+            refreshControl= {
+                <RefreshControl
+                    refreshing={refresh}
+                    onRefresh={onrefresh}
+                />
+            }
         >
             <Stories />
             {
-                allPost.map(function(post) {
-                   return <Post post={post} key={post._id} />
+                allPost.map(function (post) {
+                    return <Post post={post} key={post._id} />
                 })
             }
             <Post post={post[1]} />
-           
+
         </ScrollView>
     )
 }
+
 
 export default HomeScreen;

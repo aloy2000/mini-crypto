@@ -1,20 +1,18 @@
 import { USER_CONNECTED } from "../../actions/userAction/authAction"
 
-const initialState = { currentUser: {} }
+const initialState = { currentUser: [] }
 
-function getCurrentUserInfo(state = initialState, action) {
-    let nextState
+function getCurrentUserInfoReducer(state = initialState, action) {
     switch (action.type) {
         case USER_CONNECTED:
-            return nextState = {
+            return {
                 ...state,
-                currentUser: action.currentUser
+                currentUser: action.payload
             }
-            break
 
         default:
             return state
     }
 }
 
-export default getCurrentUserInfo
+export default getCurrentUserInfoReducer

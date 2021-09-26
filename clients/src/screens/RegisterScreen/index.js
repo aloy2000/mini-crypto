@@ -11,7 +11,6 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 
 const RegisterScreen = ({ navigation }) => {
 
-
     const [pseudo, setPseudo] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

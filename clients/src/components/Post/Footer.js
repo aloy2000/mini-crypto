@@ -72,8 +72,6 @@ const Footer = ({ likes, caption, postedAt }) => {
                 <Text> {caption} </Text>
                 <Text style={styles.postedAt}> {postedAt} </Text>
             </View>
-
-
         </View>
     )
 }

@@ -1,23 +1,24 @@
-import { getData } from '../../../screens/LoginScreen/utils/storeData'
+import axios from 'axios'
 
 export const USER_CONNECTED = 'USER_CONNECTED'
 
-export const fetchCurrentUserInfo = () => {
-    let userId;
-    return ((dispach) => {
-        getData().then((val) => {
-            userId = val
-        }).catch(err => console.log("error:", err))
+export const fetchCurrentUserInfo =  (userId) => {
+    try {
+        return async dispatch => {
+            const res = await axios.get(`http://192.168.43.15:7000/api/user/${userId}`)
 
-        if (userId) {
-            fetch('http://192.168.45.15:7000/api/user/' + userId)
-                .then(res => res.json())
-                .then(data => {
-                    dispach({ type: USER_CONNECTED, currentUser: data })
-                }).catch(e => console.log("error: ", e))
+            if(res.data) {
+                console.log("res.data.res: " ,res.data)
+                dispatch({
+                    type:USER_CONNECTED,
+                    payload: res.data
+                })
+            } else {
+                console.log('unable to fetch data user')
+            }
         }
-        else {
-            console.log('user id not found')
-        }
-    })
-} 
+    } catch (err) {
+        console.log('error: ', err)
+    }
+}
+

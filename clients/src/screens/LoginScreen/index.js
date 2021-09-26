@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import { Button, Pressable, ScrollView, Text, TextInput, View, Alert } from 'react-native'
 import AwesomeAlert from 'react-native-awesome-alerts';
 import AnimatedLoader from "react-native-animated-loader";
-
-
-
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './style'
 import { storeData, getData, removeData } from './utils/storeData'
-
+import { fetchCurrentUserInfo } from '../../redux/actions/userAction/authAction'
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('')
@@ -17,6 +15,8 @@ const Login = ({ navigation }) => {
     const [showAlert, setShowAlert] = useState(false)
     const [networkError, setNetworkError] = useState('')
     const [loading, setLoading] = useState(false)
+    const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
+    const dispatch = useDispatch()
 
     const hideAlert = () => {
         setEmailError('')
@@ -24,6 +24,7 @@ const Login = ({ navigation }) => {
         setNetworkError('')
         setShowAlert(false)
     }
+
 
     const connectPressed = () => {
         setLoading(true)
@@ -60,7 +61,7 @@ const Login = ({ navigation }) => {
             else {
                 console.log(res.user)
                 //eto zao fa za vizaka de go dormir
-                console.log("res.user type: " + typeof(res.user))
+                console.log("res.user type: " + typeof (res.user))
 
                 const dataStored = getData()
                 console.log("dataStored: " + dataStored.toString())
@@ -71,6 +72,9 @@ const Login = ({ navigation }) => {
                     removeData('@storage_key')
                     storeData(res.user)
                 }
+                const fetchUser = () => dispatch(fetchCurrentUserInfo(res.user))
+                fetchUser()
+                console.log('currentUser:', { currentUser })
                 setLoading(false)
                 navigation.navigate('Container')
 
@@ -170,6 +174,7 @@ const Login = ({ navigation }) => {
                     style={styles.textInput}
                     placeholder="Votre adresse email ..."
                     onChangeText={setEmail}
+                    keyboardType="email-address"
                 />
                 <TextInput
                     placeholder=" Votre mot de passe ..."

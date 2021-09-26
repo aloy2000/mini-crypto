@@ -18,7 +18,7 @@ import Login from './src/screens/LoginScreen';
 import Container from './src/screens/HomeScreen/Container';
 import RegisterScreen from './src/screens/RegisterScreen';
 import { Provider } from 'react-redux';
-import Store from './src/redux/store/userStore'
+import { store } from './src/redux/store/userStore'
 
 
 
@@ -61,7 +61,7 @@ function HomeStackScreen() {
 
 const App: () => Node = () => {
   return (
-    <Provider store={Store} >
+    <Provider store={store} >
       <NavigationContainer
         independent={true}
       >
