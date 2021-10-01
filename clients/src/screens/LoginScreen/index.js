@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import styles from './style'
 import { storeData, getData, removeData } from './utils/storeData'
 import { fetchCurrentUserInfo } from '../../redux/actions/userAction/authAction'
+import { HOST } from '@env'
 
 const Login = ({ navigation }) => {
+    console.log("HOST", typeof(HOST))
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
@@ -29,7 +31,7 @@ const Login = ({ navigation }) => {
     const connectPressed = () => {
         setLoading(true)
         console.log("connected pressed")
-        fetch('http://192.168.43.15:7000/api/user/login', {
+        fetch(`http://${HOST}:7000/api/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,14 +74,17 @@ const Login = ({ navigation }) => {
                     removeData('@storage_key')
                     storeData(res.user)
                 }
-                const fetchUser = () => dispatch(fetchCurrentUserInfo(res.user))
-                fetchUser()
+                const fetchUser = () =>  dispatch(fetchCurrentUserInfo(res.user))
+                fetchUser().then(() => console.log("yesss"))
                 console.log('currentUser:', { currentUser })
                 setLoading(false)
                 navigation.navigate('Container')
 
             }
-        }).catch(err => console.log("error: " + err))
+        }).catch(err =>{
+            console.log("error: " + err)
+            setLoading(false)
+        })
     }
 
     const registerPressed = () => {

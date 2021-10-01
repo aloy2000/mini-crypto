@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './style';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const ProfilImage = ({ uri, size=60 }) => {
     return (

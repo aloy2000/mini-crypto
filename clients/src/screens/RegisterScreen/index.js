@@ -5,9 +5,7 @@ import styles from '../LoginScreen/style'
 import { validate } from 'email-validator'
 import AnimatedLoader from "react-native-animated-loader";
 import AwesomeAlert from 'react-native-awesome-alerts';
-
-
-
+import { HOST } from '@env'
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -19,6 +17,7 @@ const RegisterScreen = ({ navigation }) => {
     const [passwordError, setPasswordError] = useState('')
     const [showAlert, setShowAlert] = useState(false)
     const [loading, setLoading] = useState(false)
+
 
     const hideAlert = () => {
         setPseudoError('')
@@ -38,7 +37,7 @@ const RegisterScreen = ({ navigation }) => {
             setEmailError('Email non valide')
         }
 
-        fetch('http://192.168.43.15:7000/api/user/register', {
+        fetch(`http://${HOST}:7000/api/user/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

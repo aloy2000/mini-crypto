@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
 
 
 
- app.listen(port, hostname2, () => {
+ app.listen(port, hostname, () => {
    console.log(`Server running or port ${port}`);
 }); 
 

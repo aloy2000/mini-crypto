@@ -1191,6 +1191,61 @@
   dependencies:
     nanoid "^3.1.23"
 
+"@rpldy/life-events@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/life-events/-/life-events-0.13.4.tgz#6ed5d975f70d071ce7145c18219b6ef97394c962"
+  integrity sha512-+LU02BICjTeSTzh1jEl+GZOqioKoKx9v2a4JwG0jJK9kXpkTHW8Aq2bj9x1P0t+RIVChA4HyV0d8Rf9LDWqNcQ==
+  dependencies:
+    "@rpldy/shared" "^0.13.4"
+    is-promise "^4.0.0"
+
+"@rpldy/native-uploady@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/native-uploady/-/native-uploady-0.13.4.tgz#8d38e4a6922551fdd915fffbba7dc96e5ad0da45"
+  integrity sha512-5bT/7VKOTLA/iLICLYQEIg0Q+JPRLgP9woPeBiBuY90eEPo2R7Z9B+6Qx+2iajnV1jYkN9VSaCdD6mj4pDJU/w==
+  dependencies:
+    "@rpldy/shared-ui" "^0.13.4"
+
+"@rpldy/sender@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/sender/-/sender-0.13.4.tgz#8ce85313742ad4d3932cce553479c887fc498a5d"
+  integrity sha512-ydMItRXuEhMeca7l17Kz0mc2m5Hw8CG3RHVqkRC0yCg4xD8agslShkI+LR1E9TG/bE1UihoZq+5MauYBlzkI5w==
+  dependencies:
+    "@rpldy/shared" "^0.13.4"
+
+"@rpldy/shared-ui@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/shared-ui/-/shared-ui-0.13.4.tgz#a9a153232e82b52c3a4a5f97878a0142e1113ccb"
+  integrity sha512-diUH65NHcse0lCsXEyWSOjR4XBgyAzWJQ6/pV/RT2SUNhxx3mra0Mfibzo4OgqkaxrpLz2BPoLjmCD7IIG973g==
+  dependencies:
+    "@rpldy/shared" "^0.13.4"
+    "@rpldy/uploader" "^0.13.4"
+
+"@rpldy/shared@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/shared/-/shared-0.13.4.tgz#82b54110efc63507c3e57b05067f55d967ee4ff0"
+  integrity sha512-ZVFnxEeI2fDiwBPkd+qu2EGE+vMAVzx6AcgEuDOdoEEydQsQtjVK0z+vo5HkCeHG2BKtPQuVV/kZld3n4av21w==
+  dependencies:
+    invariant "^2.2.4"
+    just-throttle "^1.1.0"
+
+"@rpldy/simple-state@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/simple-state/-/simple-state-0.13.4.tgz#4118f793f3a310ad281c61105c5dc0378961338c"
+  integrity sha512-TFemP+kAsAwphuAwLqv+yXUSpXmPgSEI9TVHErRLi41J4HFCgwV2iZg2ezpqYAwIY9tLoEEnWVRd92i/kT9Kxg==
+  dependencies:
+    "@rpldy/shared" "^0.13.4"
+
+"@rpldy/uploader@^0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@rpldy/uploader/-/uploader-0.13.4.tgz#c7ab74ee5947fcae9702356d9076e2be9b444393"
+  integrity sha512-D+ruLqNKyu3lxg+veF3rHLDLL+xWf/kjmMRmNshzzgilbRco9rLtNZg+cvnScNBqvx/rOIVxRwPAlUok92bIyw==
+  dependencies:
+    "@rpldy/life-events" "^0.13.4"
+    "@rpldy/sender" "^0.13.4"
+    "@rpldy/shared" "^0.13.4"
+    "@rpldy/simple-state" "^0.13.4"
+
 "@sideway/address@^4.1.0":
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.2.tgz#811b84333a335739d3969cfc434736268170cad1"
@@ -3572,6 +3627,11 @@ is-potential-custom-element-name@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-potential-custom-element-name/-/is-potential-custom-element-name-1.0.1.tgz#171ed6f19e3ac554394edf78caa05784a45bebb5"
   integrity sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==
 
+is-promise@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-4.0.0.tgz#42ff9f84206c1991d26debf520dd5c01042dd2f3"
+  integrity sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==
+
 is-regex@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/is-regex/-/is-regex-1.1.3.tgz#d029f9aff6448b93ebbe3f33dac71511fdcbef9f"
@@ -4220,6 +4280,11 @@ jsonify@~0.0.0:
   dependencies:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
+
+just-throttle@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-throttle/-/just-throttle-1.1.0.tgz#178d305ece9876a8a0759abd8d403aafcc6e4849"
+  integrity sha512-iePC/13XYX1Tyn9C6jY+DG3UEejkDvrKsw5xxgGhtGUwYWmoJm4CoKexscBKELOu3FTyCDzjr21ZJ67AXnz+bg==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
@@ -5427,6 +5492,20 @@ react-native-codegen@^0.0.6:
     flow-parser "^0.121.0"
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
+
+react-native-document-picker@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-6.0.4.tgz#21cbe2b3e8a1aff4aafcb81e06f09494b45e62f8"
+  integrity sha512-qFKf76M1VyiVqZscqND8wDcALfHG0BI77mJ4CzEdANqLiJUbwie7XOKtQlw5oRSAjLPgg9NjXnjbOFY3OmkIXQ==
+  dependencies:
+    invariant "^2.2.4"
+
+react-native-dotenv@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.2.0.tgz#3db4674cb56e6572fa8358904b8a58f35e56ff3f"
+  integrity sha512-/gHyvEVkgzLOI1DBes8g52vLV0cRWtxNDG/LgxRqQCeGvbzqJE7Z3tgcg5NsGOMDdr3tNYsm3yDE3GtMQi4sEg==
+  dependencies:
+    dotenv "^10.0.0"
 
 react-native-safe-area-context@^3.3.0:
   version "3.3.0"

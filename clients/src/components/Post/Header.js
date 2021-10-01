@@ -4,6 +4,7 @@ import ProfilImage from '../ProfilImage'
 import Entypo from 'react-native-vector-icons/Entypo'
 
 const Header = ({ imageUri, name }) => {
+    console.warn("name:" +name)
     return (
         <View style={styles.container}>
             <View style={styles.left}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {  StatusBar, Image } from 'react-native'
+import { StatusBar, Image } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -14,6 +14,7 @@ import NewPost from '../NewPost';
 import Notification from '../Notification';
 import ProfilImage from '../../components/ProfilImage';
 import ProfilSetting from '../ProfilSetting';
+import CommentScreen from '../CommentScreen';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -42,7 +43,8 @@ function HomeStackScreen() {
                     },
                     headerStyle: {
                         backgroundColor: '#fff'
-                    }
+                    },
+                    
                     //headerShadowVisible: false
                 }}
 
@@ -51,16 +53,9 @@ function HomeStackScreen() {
     );
 }
 
-const Container = () => {
-        getData().then(val => {
-            
-        }).catch(e => {
-            console.log("erreur : " + e)
-        })
-   
+const Container = ({ navigation }) => {
     return (
         <>
-
             <NavigationContainer
                 independent={true}
             >
@@ -96,7 +91,7 @@ const Container = () => {
 
                     })}
                 >
-                    <Tab.Screen name="HomeStackScreen" component={HomeStackScreen} />
+                    <Tab.Screen name="HomeStackScreen" component={HomeStackScreen}  />
                     <Tab.Screen name="SearchScreen" component={SearchScreen} />
                     <Tab.Screen name="NewPost" component={NewPost} />
                     <Tab.Screen name="Notification" component={Notification} />
