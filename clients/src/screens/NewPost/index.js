@@ -1,22 +1,38 @@
-import React, { useState } from 'react'
-import { Text, TextInput, View, StyleSheet, Dimensions, TouchableWithoutFeedback, Image, Button } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Text, TextInput, View, StyleSheet, Dimensions, TouchableWithoutFeedback, TouchableOpacity } from 'react-native'
 import ProfilImage from '../../components/ProfilImage'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { HOST } from '@env'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import DocumentPicker from "react-native-document-picker";
+import DocumentPicker from "react-native-document-picker"
 import axios from 'axios'
+import { getPost } from '../../redux/actions/postAction/postAction';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 
-const NewPost = () => {
+
+
+const NewPost = ({ navigation }) => {
     const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
+    //const { allPosts } = useSelector(state => state.postReducer)
+    const dispatch = useDispatch()
     const [file, setFile] = useState(null)
     const [message, setMessage] = useState(null)
+    const [fileLoaded, setfileLoaded] = useState(false)
+
 
 
     const createPost = async () => {
+        setfileLoaded(true)
+        if (message == null) {
+            alert('Indiquer le message de votre post')
+            setfileLoaded(false)
+            return
+        }
+
         if (file !== null) {
+            console.warn("fileLoaded", fileLoaded)
             try {
                 const fileToUpload = file[0]
                 const data = new FormData()
@@ -28,16 +44,24 @@ const NewPost = () => {
                     if (res.data.errors) {
                         console.log("res.data.errros: ", res.data.errors)
                     } else {
+                        const getAllPosts = () => dispatch(getPost());
+                        getAllPosts()
                         console.log("error tsy misy")
+                        //console.warn(navigation, navigation)
+
                     }
                 })
-                    .catch((e) => console.log("eeeeeeee:",  e ))
+                    .catch((e) => console.log("eeeeeeee:", e))
                 console.log("object")
 
             } catch (err) {
                 console.log("err:" + err)
             }
+            setfileLoaded(false)
 
+        } else {
+            alert('image non chargé, veuillez reessayez')
+            return
         }
     }
 
@@ -46,6 +70,7 @@ const NewPost = () => {
             const res = await DocumentPicker.pick({
                 type: [DocumentPicker.types.images]
             })
+
             console.log('res: ' + JSON.stringify(res))
             setFile(res)
             console.log("file:", file)
@@ -57,14 +82,22 @@ const NewPost = () => {
                 alert('Unknown error: ' + JSON.stringify(err))
             }
         }
+
     }
+    useEffect(() => {
+        //console.warn("redx from post", allPosts)
+        setfileLoaded(false)
+    })
 
     return (
 
         <View style={styles.container}>
             <View style={styles.profile}>
-                <ProfilImage uri={"https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/216705479_1078869752640193_612906026221720555_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF3_XbH6MGOZbpfZfbUtaR0Kb3QkMBz-oUpvdCQwHP6hVRIVmqt7GuxkUs0MLduTsivdowL8Kq54fqg-ighgJjl&_nc_ohc=fZ-uKDkisLsAX_vl6q1&_nc_ht=scontent.ftnr1-1.fna&oh=4c146bef7b31d056fbedebbe68b961dc&oe=61516F22"} size={60} />
-                <Text> {currentUser.pseudo} </Text>
+                <ProfilImage uri={"https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/216705479_1078869752640193_612906026221720555_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF3_XbH6MGOZbpfZfbUtaR0Kb3QkMBz-oUpvdCQwHP6hVRIVmqt7GuxkUs0MLduTsivdowL8Kq54fqg-ighgJjl&_nc_ohc=8bb7UyJFXhgAX89Ryj0&_nc_ht=scontent.ftnr1-1.fna&oh=a2f4c2ee5484ca4b565d3e8a34b39c65&oe=617CF0A2"} size={55} />
+                <Text style={[styles.text, { padding: 5, margin: 5, fontSize: 20 }]} > {currentUser.pseudo} </Text>
+            </View>
+            <View style={{ margin: 10, width: Dimensions.get('window').width - 20, }}>
+                <Text style={{ fontSize: 18, textAlign: 'center', color: '#40B5AD' }}>Nouvelle publication</Text>
             </View>
             <View>
                 <TextInput
@@ -78,7 +111,7 @@ const NewPost = () => {
                     <MaterialCommunityIcons
                         style={{ padding: 5, }}
                         name={'camera'}
-                        size={29}
+                        size={35}
                         color={'#1E1E1C'}
                     />
                 </TouchableWithoutFeedback>
@@ -87,22 +120,27 @@ const NewPost = () => {
                     Ajouter photo
                 </Text>
             </View>
-            <Button
-                onPress={createPost}
-                title="Terminer"
-            />
-            {file != null ? (
-                <Text style={styles.textStyle}>
-                    File Name: {file[0].name ? file[0].name : ''}
-                    {'\n'}
-                    Type: {file[0].type ? file[0].type : ''}
-                    {'\n'}
-                    File Size: {file[0].size ? file[0].size : ''}
-                    {'\n'}
-                    URI: {file[0].uri ? file[0].uri : ''}
-                    {'\n'}
-                </Text>
-            ) : null}
+            <View>
+                <TouchableOpacity onPress={createPost}>
+                    <Text style={styles.btn}>
+                        Publier
+                    </Text>
+                </TouchableOpacity >
+            </View>
+            <View>
+                {fileLoaded ?
+                     <Spinner
+                        visible={true}
+                        textContent={'Loading...'}
+                        textStyle={styles.spinnerTextStyle}
+                    />
+                    : <Spinner
+                    visible={false}
+                    textContent={'Loading...'}
+                    textStyle={styles.spinnerTextStyle}
+                  />   
+            }
+            </View>
         </View >
     )
 }
@@ -129,13 +167,33 @@ const styles = StyleSheet.create({
 
     },
     upload: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 20,
+        padding: 5
     },
     text: {
+        margin: 10,
+        fontSize: 18,
+    },
+    spinner: {
+        marginBottom: 50
+    },
+    spinnerTextStyle: {
+        color: '#40B5AD'
+    },
+    btn: {
+        width: Dimensions.get('window').width - 20,
+        padding: 10,
+        textAlign: 'center',
+        borderWidth: 1,
+        backgroundColor: '#40B5AD',
+        margin: 10,
+        borderColor: '#40B5AD',
+        fontSize: 20,
+        color: '#fff'
 
     }
-
-
 })
 
 export default NewPost

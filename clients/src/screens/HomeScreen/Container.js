@@ -34,7 +34,7 @@ function HomeStackScreen() {
                     title: 'Mini',
                     headerLeft: () => {
                         return <Image
-                            source={{ uri: 'https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/53264589_2267046020229713_6469793500375285760_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFj9Q3IoRNutVAYFPyjwdnyNsw_AFpk_6w2zD8AWmT_rGlJPCgP8qGwUUqq0UGpKJ7k2fEUuRFbxeKNJkBBlZfT&_nc_ohc=4SqrklT8Zt8AX92FNdM&_nc_ht=scontent.ftnr1-1.fna&oh=339e24de107d93f09752dcafe095c9a1&oe=6150A64C' }}
+                            source={{ uri: 'https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/53264589_2267046020229713_6469793500375285760_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeFj9Q3IoRNutVAYFPyjwdnyNsw_AFpk_6w2zD8AWmT_rGlJPCgP8qGwUUqq0UGpKJ7k2fEUuRFbxeKNJkBBlZfT&_nc_ohc=XhYhp3l9q18AX-_RuJb&tn=3un6r4YEW2HiX6dQ&_nc_ht=scontent.ftnr1-1.fna&oh=4538573bf6f5c4465992d151608f4e9a&oe=61801C4C' }}
                             style={{ height: 30, width: 30 }}
                         />
                     },

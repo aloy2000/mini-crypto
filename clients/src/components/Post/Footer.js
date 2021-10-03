@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -66,7 +66,7 @@ const Footer = ({ likes, postId, caption, postedAt, listPostLikers, navigation }
 
             <View style={styles.iconContainer}>
                 <View style={styles.left}>
-                    <TouchableWithoutFeedback
+                    <TouchableOpacity
                         onPress={onLikePressed}
                     >
                         {
@@ -84,15 +84,15 @@ const Footer = ({ likes, postId, caption, postedAt, listPostLikers, navigation }
                                     color={'#1E1E1C'}
                                 />
                         }
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={commentPressed}>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={commentPressed}>
                         <Fontisto
                             style={{ padding: 5, }}
                             name={'comment'}
                             size={22}
                             color={'#1E1E1C'}
                         />
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                     <Feather
                         style={{ padding: 5, }}
                         name={'bookmark'}

@@ -51,7 +51,7 @@ module.exports.createPost = async (req, res) => {
         likers: [],
         video: video,
         comments: [],
-        picture: req.file !== null ? "./uploads/posts/" + fileName : "",
+        picture: req.file !== null ? "../../../clients/public/uploads/posts/" + fileName : "",
 
     }).then(async (data) => {
         console.log("data", data)
