@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
 const cors = require('cors');
+const path = require('path');
+
 
 // socket.io
 const { Server } = require('socket.io');
@@ -18,11 +20,18 @@ require('./config/db');
 require('dotenv').config({ path: './config/.env' });
 const port = process.env.PORT;
 const cookieParser = require('cookie-parser')
-const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload');
+const dir = path.join(__dirname, 'clients/public/uploads/posts')
+const dir2 = path.join(__dirname, 'clients/public/uploads/profil')
+
+app.use(express.static(dir))
+app.use(express.static(dir2))
 
 
 const hostname= "192.168.0.166"
 const hostname2= "192.168.43.15"
+const hostname3= "192.168.88.41"
+const hostname4 = "192.168.43.248"
 
 app.use(cors());
 
@@ -46,7 +55,7 @@ io.on("connection", (socket) => {
 
 
 
- app.listen(port, hostname, () => {
+ app.listen(port, hostname2, () => {
    console.log(`Server running or port ${port}`);
 }); 
 

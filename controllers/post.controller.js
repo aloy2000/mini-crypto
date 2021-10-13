@@ -5,6 +5,9 @@ const { promisify } = require('util')
 const pipeline = promisify(require('stream').pipeline);
 const { uploadErrors } = require("../errors/error");
 const fs = require('fs')
+const hostname = "192.168.0.166"
+const hostname3= "192.168.88.41"
+const hostname2 = "192.168.43.15"
 
 module.exports.getAllPosts = async (req, res) => {
     await postModel.find(
@@ -51,7 +54,7 @@ module.exports.createPost = async (req, res) => {
         likers: [],
         video: video,
         comments: [],
-        picture: req.file !== null ? "../../../clients/public/uploads/posts/" + fileName : "",
+        picture: req.file !== null ? "http://" + hostname2 + ":7000/" + fileName : "",
 
     }).then(async (data) => {
         console.log("data", data)

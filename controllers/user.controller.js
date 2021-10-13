@@ -3,7 +3,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports.getAllUsers = async (req, res) => {
     const users = await UserModel.find().select('-password');
-    res.status(200).json({ users: users });
+    res.status(200).send({ users: users });
 }
 
 module.exports.userInfo = (req, res) => {
@@ -11,7 +11,7 @@ module.exports.userInfo = (req, res) => {
         return res.status(404).send('id not found: ' + req.params.id);
 
     UserModel.findById(req.params.id, (err, data) => {
-        if (!err) res.send(data) 
+        if (!err) res.send(data)
         else console.log('id not found: ' + err);
     }).select('-password');
 }
@@ -27,7 +27,8 @@ module.exports.updateUser = async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    biography: req.body.biography
+                    biography: req.body.biography,
+                    pseudo: req.body.pseudo
                 }
             },
             { new: true, upsert: true, setDefaultsOnInsert: true },
@@ -90,8 +91,9 @@ module.exports.follow = async (req, res) => {
 }
 
 module.exports.unFollow = async (req, res) => {
-    if (!ObjectId.isValid(req.params.id) || !ObjectId.isValid(req.body.idToFollow))
-        return res.status(404).send('id not found: ' + req.params.id)
+    if (!ObjectId.isValid(req.params.id) || !ObjectId.isValid(req.body.idToUnFollow))
+        return res.status(404).send('id not found: ' + req.params.id);
+
 
 
     try {

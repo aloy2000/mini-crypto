@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
         },
         profile: {
             type: String,
-            default: "./upload/profil/default-user.png"
+            default: "http://192.168.0.166:7000/profile-df.png"
         },
         biography: {
             type: String,

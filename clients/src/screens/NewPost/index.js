@@ -42,11 +42,13 @@ const NewPost = ({ navigation }) => {
                 await axios.post(`http://${HOST}:7000/api/post/createPost`, data
                 ).then((res) => {
                     if (res.data.errors) {
+                        alert(res.data.errors.format)
                         console.log("res.data.errros: ", res.data.errors)
                     } else {
                         const getAllPosts = () => dispatch(getPost());
                         getAllPosts()
                         console.log("error tsy misy")
+                        navigation.navigate('Container')
                         //console.warn(navigation, navigation)
 
                     }
@@ -66,6 +68,7 @@ const NewPost = ({ navigation }) => {
     }
 
     const selectFile = async () => {
+        
         try {
             const res = await DocumentPicker.pick({
                 type: [DocumentPicker.types.images]
@@ -93,7 +96,7 @@ const NewPost = ({ navigation }) => {
 
         <View style={styles.container}>
             <View style={styles.profile}>
-                <ProfilImage uri={"https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/216705479_1078869752640193_612906026221720555_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF3_XbH6MGOZbpfZfbUtaR0Kb3QkMBz-oUpvdCQwHP6hVRIVmqt7GuxkUs0MLduTsivdowL8Kq54fqg-ighgJjl&_nc_ohc=8bb7UyJFXhgAX89Ryj0&_nc_ht=scontent.ftnr1-1.fna&oh=a2f4c2ee5484ca4b565d3e8a34b39c65&oe=617CF0A2"} size={55} />
+                <ProfilImage uri={currentUser.profile} size={55} />
                 <Text style={[styles.text, { padding: 5, margin: 5, fontSize: 20 }]} > {currentUser.pseudo} </Text>
             </View>
             <View style={{ margin: 10, width: Dimensions.get('window').width - 20, }}>
@@ -104,6 +107,7 @@ const NewPost = ({ navigation }) => {
                     style={styles.textInput}
                     placeholder="A quoi pensez-vous ?"
                     onChangeText={setMessage}
+                    value={message}
                 />
             </View>
             <View style={styles.upload}>

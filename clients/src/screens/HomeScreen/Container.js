@@ -13,8 +13,8 @@ import SearchScreen from '../SearchScreen';
 import NewPost from '../NewPost';
 import Notification from '../Notification';
 import ProfilImage from '../../components/ProfilImage';
+import { useSelector } from 'react-redux'
 import ProfilSetting from '../ProfilSetting';
-import CommentScreen from '../CommentScreen';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -54,6 +54,8 @@ function HomeStackScreen() {
 }
 
 const Container = ({ navigation }) => {
+    const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
+
     return (
         <>
             <NavigationContainer
@@ -78,7 +80,7 @@ const Container = ({ navigation }) => {
                                 iconName = focused ? 'notifications' : 'notifications-outline';
                             } else if (route.name === 'ProfilSetting') {
                                 iconName = focused ? 'add' : 'add-outline';
-                                return <ProfilImage size={20} uri={'https://scontent.ftnr1-1.fna.fbcdn.net/v/t1.6435-9/216705479_1078869752640193_612906026221720555_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeF3_XbH6MGOZbpfZfbUtaR0Kb3QkMBz-oUpvdCQwHP6hVRIVmqt7GuxkUs0MLduTsivdowL8Kq54fqg-ighgJjl&_nc_ohc=fZ-uKDkisLsAX_vl6q1&_nc_ht=scontent.ftnr1-1.fna&oh=4c146bef7b31d056fbedebbe68b961dc&oe=61516F22'} key={3} />
+                                return <ProfilImage size={20} uri={currentUser.profile} key={3} />
                             }
 
 

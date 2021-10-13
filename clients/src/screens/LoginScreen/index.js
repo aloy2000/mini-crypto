@@ -5,11 +5,11 @@ import AnimatedLoader from "react-native-animated-loader";
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './style'
 import { storeData, getData, removeData } from './utils/storeData'
-import { fetchCurrentUserInfo } from '../../redux/actions/userAction/authAction'
+import { fetchCurrentUserInfo, getAllUsers } from '../../redux/actions/userAction/authAction'
 import { HOST } from '@env'
 
 const Login = ({ navigation }) => {
-    console.log("HOST", typeof(HOST))
+    //console.log("HOST", HOST)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
@@ -18,6 +18,7 @@ const Login = ({ navigation }) => {
     const [networkError, setNetworkError] = useState('')
     const [loading, setLoading] = useState(false)
     const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
+    const { users } = useSelector(state => state.getCurrentUserInfoReducer);
     const dispatch = useDispatch()
 
     const hideAlert = () => {
@@ -74,14 +75,16 @@ const Login = ({ navigation }) => {
                     removeData('@storage_key')
                     storeData(res.user)
                 }
-                const fetchUser = () =>  dispatch(fetchCurrentUserInfo(res.user))
+                const fetchUser = () => dispatch(fetchCurrentUserInfo(res.user))
+                const getAllUser = () => dispatch(getAllUsers())
                 fetchUser().then(() => console.log("yesss"))
+                getAllUser()
                 console.log('currentUser:', { currentUser })
                 setLoading(false)
                 navigation.navigate('Container')
 
             }
-        }).catch(err =>{
+        }).catch(err => {
             console.log("error: " + err)
             setLoading(false)
         })
@@ -194,7 +197,6 @@ const Login = ({ navigation }) => {
                         style={styles.button}
                         color={'#40B5AD'}
                         onPress={connectPressed}
-
                     />
                 </View>
                 <Pressable style={styles.passwordLost}>

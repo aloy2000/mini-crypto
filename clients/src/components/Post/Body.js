@@ -1,12 +1,15 @@
 import React from 'react'
-import { Image, Text, View, StyleSheet, Dimensions } from 'react-native'
+import { Image, View, StyleSheet, Dimensions } from 'react-native'
 
-const Body = ({imageUri}) => {
+const Body = ({ imageUri }) => {
+    const image = imageUri
+    //console.warn("imageUri", imageUri)
     return (
         <View>
-            <Image 
-                source={ {uri: imageUri} }
+            <Image
+                source={{uri: imageUri}}
                 style={styles.image}
+                fromWeb={false}
             />
         </View>
     )

@@ -20,8 +20,7 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store/userStore'
 import CommentScreen from './src/screens/CommentScreen';
-import Post from './src/components/Post';
-import Footer from './src/components/Post/Footer';
+import NewPost from './src/screens/NewPost'
 
 
 
@@ -86,6 +85,11 @@ const App: () => Node = () => {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="NewPost"
+            component={NewPost}
             options={{ headerShown: false }}
           />
           

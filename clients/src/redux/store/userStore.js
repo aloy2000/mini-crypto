@@ -6,7 +6,8 @@ import postReducer from "../reducers/postReducer";
 
 const rootReducer = combineReducers({
     getCurrentUserInfoReducer,
-    postReducer
+    postReducer,
+    
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
