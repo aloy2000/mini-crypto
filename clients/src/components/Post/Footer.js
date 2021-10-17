@@ -4,14 +4,19 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
 import axios from 'axios'
 import { HOST } from '@env'
+import { getCommentScreen, getPostId } from '../../redux/actions/postAction/postAction'
 
 const Footer = ({ likes, postId, caption, postedAt, listPostLikers, navigation }) => {
     const [like, setLike] = useState(false)
     const [likeCount, setLikeCount] = useState(likes)
     const { currentUser } = useSelector(state => state.getCurrentUserInfoReducer);
+    const { commentScreen } = useSelector(state => state.postReducer)
+    const [comment, setComment] = useState(false)
+    const dispatch = useDispatch()
+
 
     const onLikePressed = async () => {
         setLike(!like)
@@ -55,10 +60,11 @@ const Footer = ({ likes, postId, caption, postedAt, listPostLikers, navigation }
     }, [])
 
     const commentPressed = () => {
-        console.warn(navigation.getParent())
-        navigation.navigate('Home', {
-            screen: 'Comment',
-        })
+        setComment(true)
+        const commentScreen = () =>  dispatch(getCommentScreen(true))
+        const getIdPost= () => dispatch(getPostId(postId))
+        commentScreen()
+        getIdPost()
     }
 
     return (

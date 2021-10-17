@@ -31,7 +31,7 @@ module.exports.updateUser = async (req, res) => {
                     pseudo: req.body.pseudo
                 }
             },
-            { new: true, upsert: true, setDefaultsOnInsert: true },
+            { new: true, upsert: true, },
             (err, data) => {
                 if (!err) return res.send(data);
                 else return res.status(500).json({ message: err });

@@ -23,6 +23,7 @@ const NewPost = ({ navigation }) => {
 
 
 
+
     const createPost = async () => {
         setfileLoaded(true)
         if (message == null) {

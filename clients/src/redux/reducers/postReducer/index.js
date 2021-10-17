@@ -1,7 +1,10 @@
-import { ADD_POST, GET_ALL_POST } from "../../actions/postAction/postAction";
+import { ADD_POST, GET_ALL_POST, GET_COMMENT_SCREEN, GET_POST_COMMENT, GET_POST_ID } from "../../actions/postAction/postAction";
 
 const initialState = {
-    allPosts: []
+    allPosts: [],
+    singlePost: [],
+    commentScreen: false,
+    postId: ''
 }
 
 export default function postReducer(state = initialState, action) {
@@ -15,6 +18,21 @@ export default function postReducer(state = initialState, action) {
                 allPosts: action.payload
             }
             break
+        case GET_POST_COMMENT:
+            return {
+                ...state,
+                singlePost: action.payload
+            }
+        case GET_COMMENT_SCREEN:
+            return {
+                ...state,
+                commentScreen: action.payload
+            }
+        case GET_POST_ID:
+            return {
+                ...state,
+                postId: action.payload
+            }
         default:
             return state
             break;

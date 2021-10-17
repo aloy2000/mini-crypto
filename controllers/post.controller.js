@@ -6,7 +6,7 @@ const pipeline = promisify(require('stream').pipeline);
 const { uploadErrors } = require("../errors/error");
 const fs = require('fs')
 const hostname = "192.168.0.166"
-const hostname3= "192.168.88.41"
+const hostname3 = "192.168.88.41"
 const hostname2 = "192.168.43.15"
 
 module.exports.getAllPosts = async (req, res) => {
@@ -19,6 +19,17 @@ module.exports.getAllPosts = async (req, res) => {
 }
 
 
+module.exports.getPost = async (req, res) => {
+    if (!ObjectId.isValid(req.params.id))
+        return res.status(404).send('id not found: ' + req.params.id);
+    postModel.findById(
+        req.params.id,
+        (err, data) => {
+            if (!err) res.send(data)
+            else res.send(err)
+        }
+    )
+}
 
 module.exports.createPost = async (req, res) => {
     const { posterId, message, video } = req.body;

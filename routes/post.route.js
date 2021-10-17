@@ -5,6 +5,7 @@ const upload = multer()
 
 
 Router.get('/getAllPosts', postController.getAllPosts);
+Router.get('/:id', postController.getPost)
 Router.post('/createPost', upload.single('file'), postController.createPost);
 Router.delete('/:id', postController.deletePost);
 Router.put('/:id', postController.updatePost);

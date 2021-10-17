@@ -63,7 +63,13 @@ const Container = ({ navigation }) => {
             >
                 <StatusBar barStyle="dark-content" />
                 <Tab.Navigator
+                    detachInactiveScreens={true}
+                    
                     screenOptions={({ route }) => ({
+                        tabBarStyle: {
+                            position: 'absolute'
+                        },
+                        tabBarHideOnKeyboard: true,
                         tabBarIcon: ({ focused, color, size }) => {
                             let iconName;
 

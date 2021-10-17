@@ -5,7 +5,9 @@ const pipeline = promisify(require('stream').pipeline);
 const { uploadErrors } = require("../errors/error");
 
 module.exports.uploadProfil = async (req, res) => {
+    let fileName;
     try {
+        console.log("req.file" , req.file)
         if (
             req.file.detectedMimeType != "image/jpg" &&
             req.file.detectedMimeType != "image/png" &&
@@ -13,12 +15,12 @@ module.exports.uploadProfil = async (req, res) => {
         )
             throw Error("invalid file");
 
-        if (req.file.size > 70000000) throw Error("max size");
+        if (req.file.size > 5000000) throw Error("max size");
     } catch (err) {
         const errors = uploadErrors(err);
         return res.status(201).json({ errors });
     }
-    const fileName = req.body.name + ".jpg";
+    fileName = req.body.name + ".jpg";
 
     await pipeline(
         req.file.stream,
@@ -30,8 +32,8 @@ module.exports.uploadProfil = async (req, res) => {
     try {
         await userModel.findByIdAndUpdate(
             req.body.userId,
-            { $set: { profile: "./uploads/profil/" + fileName } },
-            { new: true, upsert: true, setDefaultsOnInsert: true },
+            { $set: { profile: req.file !== null ? "http://" + hostname2 + ":7000/" + fileName : ""} },
+            { new: true, upsert: true,  },
             (err, data) => {
                 if (!err) return res.send(data);
                 else return res.status(500).send({ message: err });
