@@ -1,9 +1,10 @@
-import { FOLLOW_USER, GET_ALL_USER, UNFOLLOW_USER, USER_CONNECTED } from "../../actions/userAction/authAction"
+import { FOLLOW_USER, GET_ALL_MESSAGE, GET_ALL_USER, UNFOLLOW_USER, USER_CONNECTED } from "../../actions/userAction/authAction"
 
 const initialState = {
     currentUser: [],
     following: [],
-    users: []
+    users: [],
+    allMessages: []
 
 }
 
@@ -15,8 +16,8 @@ function getCurrentUserInfoReducer(state = initialState, action) {
                 currentUser: action.payload
             }
         case FOLLOW_USER: {
-            state.following.map(function(f) {
-                if(action.payload === f) {
+            state.following.map(function (f) {
+                if (action.payload === f) {
                     return
                 }
             })
@@ -34,9 +35,16 @@ function getCurrentUserInfoReducer(state = initialState, action) {
             }
         }
         case GET_ALL_USER: {
-            return{
+            return {
                 ...state,
                 users: action.payload
+            }
+        }
+
+        case GET_ALL_MESSAGE: {
+            return {
+                ...state,
+                allMessages: action.payload
             }
         }
         default:

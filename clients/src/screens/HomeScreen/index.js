@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
     const { allPosts } = useSelector(state => state.postReducer)
     const { commentScreen } = useSelector(state => state.postReducer)
     const { postId } = useSelector(state => state.postReducer)
-
+    const { allMessages } = useSelector(state => state.getCurrentUserInfoReducer);
     const dispatch = useDispatch()
 
     const onrefresh = useCallback(() => {
@@ -29,7 +29,8 @@ const HomeScreen = ({ navigation }) => {
     useEffect(() => {
         const getAllPosts = () => dispatch(getPost());
         getAllPosts()
-        //console.warn("allPostFromRedux", allPosts)
+        //console.warn("allMessage:" , allMessages)
+        
     }, []);
 
 

@@ -4,17 +4,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getData } from '../LoginScreen/utils/storeData'
 
 
 import HomeScreen from '.';
-import SearchScreen from '../SearchScreen';
+import MessageScreen from '../MessageScreen/index'
 import NewPost from '../NewPost';
 import Notification from '../Notification';
 import ProfilImage from '../../components/ProfilImage';
 import { useSelector } from 'react-redux'
 import ProfilSetting from '../ProfilSetting';
+import ContainerMessage from '../MessageScreen/Container';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -44,7 +47,7 @@ function HomeStackScreen() {
                     headerStyle: {
                         backgroundColor: '#fff'
                     },
-                    
+
                     //headerShadowVisible: false
                 }}
 
@@ -64,7 +67,7 @@ const Container = ({ navigation }) => {
                 <StatusBar barStyle="dark-content" />
                 <Tab.Navigator
                     detachInactiveScreens={true}
-                    
+
                     screenOptions={({ route }) => ({
                         tabBarStyle: {
                             position: 'absolute'
@@ -77,8 +80,9 @@ const Container = ({ navigation }) => {
                                 iconName = focused
                                     ? 'home'
                                     : 'home-outline';
-                            } else if (route.name === 'SearchScreen') {
-                                iconName = focused ? 'search' : 'search-outline';
+                            } else if (route.name === 'MessageScreen') {
+                                iconName = focused ? 'chatbox' : 'chatbox-outline';
+                                
                             } else if (route.name === 'NewPost') {
                                 iconName = focused ? 'add' : 'add-outline';
                                 return <Ionicons name={iconName} size={30} color={color} />;
@@ -100,7 +104,7 @@ const Container = ({ navigation }) => {
                     })}
                 >
                     <Tab.Screen name="HomeStackScreen" component={HomeStackScreen}  />
-                    <Tab.Screen name="SearchScreen" component={SearchScreen} />
+                    <Tab.Screen name="MessageScreen" component={ContainerMessage} />
                     <Tab.Screen name="NewPost" component={NewPost} />
                     <Tab.Screen name="Notification" component={Notification} />
                     <Tab.Screen name="ProfilSetting" component={ProfilSetting} />

@@ -21,6 +21,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/redux/store/userStore'
 import CommentScreen from './src/screens/CommentScreen';
 import NewPost from './src/screens/NewPost'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 
@@ -63,39 +64,41 @@ function HomeStackScreen() {
 
 const App: () => Node = () => {
   return (
-    <Provider store={store} >
-      <NavigationContainer
-        independent={true}
-      >
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Container" component={Container}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Comment"
-            component={CommentScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="NewPost"
-            component={NewPost}
-            options={{ headerShown: false }}
-          />
-          
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <SafeAreaProvider>
+      <Provider store={store} >
+        <NavigationContainer
+          independent={true}
+        >
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Container" component={Container}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Comment"
+              component={CommentScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="NewPost"
+              component={NewPost}
+              options={{ headerShown: false }}
+            />
+
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </SafeAreaProvider>
   )
 };
 

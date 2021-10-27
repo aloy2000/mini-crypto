@@ -117,6 +117,7 @@ export default ProfilChange
 const styles = StyleSheet.create({
     container: {
         padding: 20,
+        marginTop: 45,
     },
     header: {
         flexDirection: 'row',

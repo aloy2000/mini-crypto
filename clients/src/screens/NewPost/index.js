@@ -153,7 +153,8 @@ const NewPost = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        marginTop: 45
 
     },
     profile: {

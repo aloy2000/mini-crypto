@@ -28,8 +28,9 @@ module.exports.updateUser = async (req, res) => {
             {
                 $set: {
                     biography: req.body.biography,
-                    pseudo: req.body.pseudo
+                    pseudo: req.body.pseudo                                                                                                                                                                                                                                                                                                
                 }
+
             },
             { new: true, upsert: true, },
             (err, data) => {

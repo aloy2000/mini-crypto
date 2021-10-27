@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet,  View } from 'react-native'
 import axios from 'axios'
 import moment from 'moment'
-
+import 'moment/locale/fr'
+moment.locale('fr')
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'

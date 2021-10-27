@@ -3,16 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const postRoute = require('./routes/post.route');
 const userRoute = require('./routes/user.route');
+const messageRoute = require('./routes/message.route');
+
+
 const cors = require('cors');
 const path = require('path');
-
-
-// socket.io
-const { Server } = require('socket.io');
-const { createServer } = require('http')
-const httpServer = createServer(app)
-const io = new Server(httpServer, { /* options */ });
-
 
 const { userCheck, auth } = require('./middleware/auth.middleware')
 
@@ -48,15 +43,9 @@ app.get('/jwtid', auth, (req, res) => {
 //routes
 app.use('/api/post', postRoute);
 app.use('/api/user', userRoute);
-
-io.on("connection", (socket) => {
-   console.log(`${socket}`)
-})
+app.use('/api/message', messageRoute)
 
 
-
- app.listen(port, hostname2, () => {
+ app.listen(port, hostname, () => {
    console.log(`Server running or port ${port}`);
-}); 
-
-
+});

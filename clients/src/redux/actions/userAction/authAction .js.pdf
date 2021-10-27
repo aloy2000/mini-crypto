@@ -6,8 +6,6 @@ export const USER_CONNECTED = 'USER_CONNECTED'
 export const FOLLOW_USER = "FOLLOW_USER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";
 export const GET_ALL_USER = "GET_ALL_USER"
-export const GET_ALL_MESSAGE = "GET_ALL_MESSAGE"
-
 
 
 export const fetchCurrentUserInfo = (userId) => {
@@ -77,5 +75,3 @@ export const getAllUsers = () => {
         console.log('error unfollow: ', err)
     }
 }
-
-

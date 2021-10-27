@@ -61,7 +61,7 @@ const ProfilSetting = () => {
                         <Text style={styles.text}>Abonnés</Text>
                     </View>
                     <View style={styles.following} >
-                        <Text style={styles.text}> { currentUser.following.length} </Text>
+                        <Text style={styles.text}> {currentUser.following.length} </Text>
                         <Text style={styles.text}>Abonnements</Text>
                     </View>
                 </View>
@@ -98,7 +98,8 @@ const ProfilSetting = () => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 30
     },
     user: {
         flexDirection: 'row',

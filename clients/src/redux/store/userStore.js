@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 
 import getCurrentUserInfoReducer from "../reducers/userReducer/profilReducer";
 import postReducer from "../reducers/postReducer";
+import messageReducer from "../reducers/messageReducer";
 
 const rootReducer = combineReducers({
     getCurrentUserInfoReducer,
     postReducer,
+    messageReducer
     
 })
 
