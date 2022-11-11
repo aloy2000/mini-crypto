@@ -10,6 +10,7 @@ It is a fullstack mini social network project using node js, react native and mo
     Create an .env file in the config folder and add these lines:
     PORT=7000
     IP= YOUR_IP_ADDRESS 
+    cd clients && replace the HOST with your IP address in the .env file
 
 3- start project
     -yarn start 
