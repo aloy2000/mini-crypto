@@ -13,7 +13,10 @@ const { userCheck, auth } = require('./middleware/auth.middleware')
 
 require('./config/db');
 require('dotenv').config({ path: './config/.env' });
+
 const port = process.env.PORT;
+const hostname= process.env.IP
+
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload');
 const dir = path.join(__dirname, 'clients/public/uploads/posts')
@@ -23,10 +26,9 @@ app.use(express.static(dir))
 app.use(express.static(dir2))
 
 
-const hostname= "192.168.0.166"
-const hostname2= "192.168.43.15"
-const hostname3= "192.168.88.41"
-const hostname4 = "192.168.43.248"
+// const hostname2= "192.168.43.15"
+// const hostname3= "192.168.88.41"
+// const hostname4 = "192.168.43.248"
 
 app.use(cors());
 

@@ -5,9 +5,7 @@ const { promisify } = require('util')
 const pipeline = promisify(require('stream').pipeline);
 const { uploadErrors } = require("../errors/error");
 const fs = require('fs')
-const hostname = "192.168.0.166"
-const hostname3 = "192.168.88.41"
-const hostname2 = "192.168.43.15"
+const hostname2 = process.env.IP
 
 module.exports.getAllPosts = async (req, res) => {
     await postModel.find(

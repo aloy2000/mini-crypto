@@ -3,6 +3,8 @@ const fs = require('fs');
 const { promisify } = require('util')
 const pipeline = promisify(require('stream').pipeline);
 const { uploadErrors } = require("../errors/error");
+const hostname2 = process.env.IP
+
 
 module.exports.uploadProfil = async (req, res) => {
     let fileName;
